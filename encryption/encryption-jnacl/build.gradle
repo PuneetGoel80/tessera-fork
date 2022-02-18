@@ -1,0 +1,8 @@
+plugins {
+  id "java-library"
+}
+
+dependencies {
+  implementation project(":encryption:encryption-api")
+  implementation "eu.neilalexander:jnacl"
+}

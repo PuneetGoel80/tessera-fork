@@ -1,0 +1,9 @@
+plugins {
+  id "java-library"
+}
+
+dependencies {
+  implementation project(":shared")
+  implementation project(":config")
+  implementation project(":tessera-context")
+}

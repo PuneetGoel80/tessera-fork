@@ -1,0 +1,8 @@
+plugins {
+  id "java-library"
+}
+
+dependencies {
+  implementation "de.mkammerer:argon2-jvm"
+  implementation project(":shared")
+}

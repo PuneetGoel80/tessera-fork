@@ -1,0 +1,49 @@
+plugins {
+  id "java-library"
+  id "org.javamodularity.moduleplugin"
+}
+
+dependencies {
+
+  implementation "jakarta.ws.rs:jakarta.ws.rs-api"
+  implementation "jakarta.xml.bind:jakarta.xml.bind-api"
+  implementation "com.sun.activation:jakarta.activation"
+
+  implementation "org.glassfish:jsonp-jaxrs"
+  api "jakarta.json:jakarta.json-api"
+  // implementation "org.glassfish:jakarta.json:2.0.1:module"
+  implementation group: "org.glassfish", name: "jakarta.json", classifier: "module"
+
+
+  implementation "jakarta.validation:jakarta.validation-api"
+  implementation project(':shared')
+  implementation project(':argon2')
+  implementation project(':encryption:encryption-api')
+  implementation "org.apache.commons:commons-lang3"
+  implementation "org.jasypt:jasypt"
+  implementation "org.glassfish:jakarta.el"
+  runtimeOnly project(":encryption:encryption-jnacl")
+  runtimeOnly project(":encryption:encryption-ec")
+
+  testImplementation "org.hibernate.validator:hibernate-validator"
+
+  implementation "jakarta.xml.bind:jakarta.xml.bind-api"
+  runtimeOnly("org.eclipse.persistence:org.eclipse.persistence.moxy") {
+    exclude group: "jakarta.json", module: "jakarta,json-api"
+  }
+  runtimeOnly "org.glassfish.jaxb:jaxb-runtime"
+
+  testImplementation "nl.jqno.equalsverifier:equalsverifier"
+  //   testImplementation "jakarta.el:jakarta.el-api"
+
+}
+
+jar {
+  manifest {
+    attributes(
+      "Implementation-Title": project.name,
+      "Implementation-Version": project.version,
+      "Specification-Version": String.valueOf(project.version).replaceAll("-SNAPSHOT","")
+      )
+  }
+}
